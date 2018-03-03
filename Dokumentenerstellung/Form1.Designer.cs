@@ -44,32 +44,42 @@
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.lbl_date = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.Cbox_salutation = new System.Windows.Forms.ComboBox();
+			this.Lbl_salutation = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.pbx_digitalSignature = new System.Windows.Forms.PictureBox();
+			this.chkbx_addSignature = new System.Windows.Forms.CheckBox();
+			this.Cbx_signature = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.Rtb_mainText = new System.Windows.Forms.RichTextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.Tbx_subject = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.Lbl_citySender = new System.Windows.Forms.Label();
 			this.Tbx_citySender = new System.Windows.Forms.TextBox();
-			this.Tbx_subject = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.Lbl_salutation = new System.Windows.Forms.Label();
-			this.Cbox_salutation = new System.Windows.Forms.ComboBox();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.Rtb_mainText = new System.Windows.Forms.RichTextBox();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.Cbx_signature = new System.Windows.Forms.ComboBox();
-			this.chkbx_addSignature = new System.Windows.Forms.CheckBox();
-			this.pbx_digitalSignature = new System.Windows.Forms.PictureBox();
 			this.Btn_generateDocument = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gbx_recipient.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbx_digitalSignature)).BeginInit();
+			this.groupBox2.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gbx_recipient
@@ -217,6 +227,28 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Anrede";
 			// 
+			// Cbox_salutation
+			// 
+			this.Cbox_salutation.FormattingEnabled = true;
+			this.Cbox_salutation.Items.AddRange(new object[] {
+            "Frau",
+            "Herr",
+            "Damen und Herren"});
+			this.Cbox_salutation.Location = new System.Drawing.Point(98, 23);
+			this.Cbox_salutation.Name = "Cbox_salutation";
+			this.Cbox_salutation.Size = new System.Drawing.Size(172, 21);
+			this.Cbox_salutation.TabIndex = 1;
+			this.Cbox_salutation.SelectedIndexChanged += new System.EventHandler(this.Cbox_salutation_SelectedIndexChanged);
+			// 
+			// Lbl_salutation
+			// 
+			this.Lbl_salutation.AutoSize = true;
+			this.Lbl_salutation.Location = new System.Drawing.Point(16, 26);
+			this.Lbl_salutation.Name = "Lbl_salutation";
+			this.Lbl_salutation.Size = new System.Drawing.Size(76, 13);
+			this.Lbl_salutation.TabIndex = 0;
+			this.Lbl_salutation.Text = "Sehr geehrte/r";
+			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
@@ -245,9 +277,102 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Allgemein";
 			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.pbx_digitalSignature);
+			this.groupBox3.Controls.Add(this.chkbx_addSignature);
+			this.groupBox3.Controls.Add(this.Cbx_signature);
+			this.groupBox3.Controls.Add(this.label7);
+			this.groupBox3.Location = new System.Drawing.Point(4, 342);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(714, 89);
+			this.groupBox3.TabIndex = 8;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Grußformel";
+			// 
+			// pbx_digitalSignature
+			// 
+			this.pbx_digitalSignature.Location = new System.Drawing.Point(427, 20);
+			this.pbx_digitalSignature.Name = "pbx_digitalSignature";
+			this.pbx_digitalSignature.Size = new System.Drawing.Size(100, 50);
+			this.pbx_digitalSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbx_digitalSignature.TabIndex = 3;
+			this.pbx_digitalSignature.TabStop = false;
+			this.pbx_digitalSignature.Visible = false;
+			// 
+			// chkbx_addSignature
+			// 
+			this.chkbx_addSignature.AutoSize = true;
+			this.chkbx_addSignature.Location = new System.Drawing.Point(186, 49);
+			this.chkbx_addSignature.Name = "chkbx_addSignature";
+			this.chkbx_addSignature.Size = new System.Drawing.Size(171, 17);
+			this.chkbx_addSignature.TabIndex = 2;
+			this.chkbx_addSignature.Text = "digitale Unterschrift hinzufügen";
+			this.chkbx_addSignature.UseVisualStyleBackColor = true;
+			this.chkbx_addSignature.CheckedChanged += new System.EventHandler(this.chkbx_addSignature_CheckedChanged);
+			// 
+			// Cbx_signature
+			// 
+			this.Cbx_signature.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ralf Risse",
+            "Ute Heitz"});
+			this.Cbx_signature.FormattingEnabled = true;
+			this.Cbx_signature.Items.AddRange(new object[] {
+            "Ralf Risse",
+            "Ute Heitz"});
+			this.Cbx_signature.Location = new System.Drawing.Point(6, 47);
+			this.Cbx_signature.Name = "Cbx_signature";
+			this.Cbx_signature.Size = new System.Drawing.Size(121, 21);
+			this.Cbx_signature.TabIndex = 1;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(7, 20);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(120, 13);
+			this.label7.TabIndex = 0;
+			this.label7.Text = "Mit freundlichen Grüßen";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.Rtb_mainText);
+			this.groupBox2.Location = new System.Drawing.Point(3, 143);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(715, 192);
+			this.groupBox2.TabIndex = 7;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Hauptteil";
+			// 
+			// Rtb_mainText
+			// 
+			this.Rtb_mainText.Location = new System.Drawing.Point(6, 19);
+			this.Rtb_mainText.Name = "Rtb_mainText";
+			this.Rtb_mainText.Size = new System.Drawing.Size(703, 167);
+			this.Rtb_mainText.TabIndex = 0;
+			this.Rtb_mainText.Text = "";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(16, 32);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(59, 13);
+			this.label8.TabIndex = 6;
+			this.label8.Text = "Betreffzeile";
+			// 
+			// Tbx_subject
+			// 
+			this.Tbx_subject.Location = new System.Drawing.Point(84, 29);
+			this.Tbx_subject.MaxLength = 100;
+			this.Tbx_subject.Name = "Tbx_subject";
+			this.Tbx_subject.Size = new System.Drawing.Size(630, 20);
+			this.Tbx_subject.TabIndex = 5;
+			// 
 			// tabPage2
 			// 
 			this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPage2.Controls.Add(this.dataGridView1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -260,7 +385,7 @@
 			this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(577, 227);
+			this.tabPage3.Size = new System.Drawing.Size(724, 478);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Angebot";
 			// 
@@ -290,120 +415,6 @@
 			this.Tbx_citySender.TabIndex = 7;
 			this.Tbx_citySender.Text = "Gelsenkirchen";
 			// 
-			// Tbx_subject
-			// 
-			this.Tbx_subject.Location = new System.Drawing.Point(84, 29);
-			this.Tbx_subject.MaxLength = 100;
-			this.Tbx_subject.Name = "Tbx_subject";
-			this.Tbx_subject.Size = new System.Drawing.Size(630, 20);
-			this.Tbx_subject.TabIndex = 5;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(16, 32);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(59, 13);
-			this.label8.TabIndex = 6;
-			this.label8.Text = "Betreffzeile";
-			// 
-			// Lbl_salutation
-			// 
-			this.Lbl_salutation.AutoSize = true;
-			this.Lbl_salutation.Location = new System.Drawing.Point(16, 26);
-			this.Lbl_salutation.Name = "Lbl_salutation";
-			this.Lbl_salutation.Size = new System.Drawing.Size(76, 13);
-			this.Lbl_salutation.TabIndex = 0;
-			this.Lbl_salutation.Text = "Sehr geehrte/r";
-			// 
-			// Cbox_salutation
-			// 
-			this.Cbox_salutation.FormattingEnabled = true;
-			this.Cbox_salutation.Items.AddRange(new object[] {
-            "Frau",
-            "Herr",
-            "Damen und Herren"});
-			this.Cbox_salutation.Location = new System.Drawing.Point(98, 23);
-			this.Cbox_salutation.Name = "Cbox_salutation";
-			this.Cbox_salutation.Size = new System.Drawing.Size(172, 21);
-			this.Cbox_salutation.TabIndex = 1;
-			this.Cbox_salutation.SelectedIndexChanged += new System.EventHandler(this.Cbox_salutation_SelectedIndexChanged);
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.Rtb_mainText);
-			this.groupBox2.Location = new System.Drawing.Point(3, 143);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(715, 192);
-			this.groupBox2.TabIndex = 7;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Hauptteil";
-			// 
-			// Rtb_mainText
-			// 
-			this.Rtb_mainText.Location = new System.Drawing.Point(6, 19);
-			this.Rtb_mainText.Name = "Rtb_mainText";
-			this.Rtb_mainText.Size = new System.Drawing.Size(703, 167);
-			this.Rtb_mainText.TabIndex = 0;
-			this.Rtb_mainText.Text = "";
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.pbx_digitalSignature);
-			this.groupBox3.Controls.Add(this.chkbx_addSignature);
-			this.groupBox3.Controls.Add(this.Cbx_signature);
-			this.groupBox3.Controls.Add(this.label7);
-			this.groupBox3.Location = new System.Drawing.Point(4, 342);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(714, 89);
-			this.groupBox3.TabIndex = 8;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Grußformel";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(7, 20);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(120, 13);
-			this.label7.TabIndex = 0;
-			this.label7.Text = "Mit freundlichen Grüßen";
-			// 
-			// Cbx_signature
-			// 
-			this.Cbx_signature.AutoCompleteCustomSource.AddRange(new string[] {
-            "Ralf Risse",
-            "Ute Heitz"});
-			this.Cbx_signature.FormattingEnabled = true;
-			this.Cbx_signature.Items.AddRange(new object[] {
-            "Ralf Risse",
-            "Ute Heitz"});
-			this.Cbx_signature.Location = new System.Drawing.Point(6, 47);
-			this.Cbx_signature.Name = "Cbx_signature";
-			this.Cbx_signature.Size = new System.Drawing.Size(121, 21);
-			this.Cbx_signature.TabIndex = 1;
-			// 
-			// chkbx_addSignature
-			// 
-			this.chkbx_addSignature.AutoSize = true;
-			this.chkbx_addSignature.Location = new System.Drawing.Point(186, 49);
-			this.chkbx_addSignature.Name = "chkbx_addSignature";
-			this.chkbx_addSignature.Size = new System.Drawing.Size(171, 17);
-			this.chkbx_addSignature.TabIndex = 2;
-			this.chkbx_addSignature.Text = "digitale Unterschrift hinzufügen";
-			this.chkbx_addSignature.UseVisualStyleBackColor = true;
-			this.chkbx_addSignature.CheckedChanged += new System.EventHandler(this.chkbx_addSignature_CheckedChanged);
-			// 
-			// pbx_digitalSignature
-			// 
-			this.pbx_digitalSignature.Location = new System.Drawing.Point(427, 20);
-			this.pbx_digitalSignature.Name = "pbx_digitalSignature";
-			this.pbx_digitalSignature.Size = new System.Drawing.Size(100, 50);
-			this.pbx_digitalSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbx_digitalSignature.TabIndex = 3;
-			this.pbx_digitalSignature.TabStop = false;
-			this.pbx_digitalSignature.Visible = false;
-			// 
 			// Btn_generateDocument
 			// 
 			this.Btn_generateDocument.Location = new System.Drawing.Point(349, 120);
@@ -413,6 +424,69 @@
 			this.Btn_generateDocument.Text = "Dokument erstellen";
 			this.Btn_generateDocument.UseVisualStyleBackColor = true;
 			this.Btn_generateDocument.Click += new System.EventHandler(this.Btn_generateDocument_Click);
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7});
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(724, 150);
+			this.dataGridView1.TabIndex = 0;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Pos.";
+			this.Column1.Name = "Column1";
+			this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column1.Width = 35;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Anzahl";
+			this.Column2.Name = "Column2";
+			this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column2.Width = 50;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Einheit";
+			this.Column3.Name = "Column3";
+			this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column3.Width = 50;
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Bezeichnung";
+			this.Column4.Name = "Column4";
+			this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column4.Width = 300;
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "MwSt.";
+			this.Column5.Name = "Column5";
+			this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column5.Width = 40;
+			// 
+			// Column6
+			// 
+			this.Column6.HeaderText = "Einzelpreis";
+			this.Column6.Name = "Column6";
+			this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Column7
+			// 
+			this.Column7.HeaderText = "Gesamtpreis";
+			this.Column7.Name = "Column7";
+			this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
 			// MainWindow
 			// 
@@ -435,10 +509,12 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbx_digitalSignature)).EndInit();
+			this.groupBox2.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -481,6 +557,14 @@
 		private System.Windows.Forms.ComboBox Cbx_signature;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button Btn_generateDocument;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
 	}
 }
 
