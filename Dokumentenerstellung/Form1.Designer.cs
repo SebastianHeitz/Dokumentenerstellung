@@ -56,7 +56,7 @@
 			this.Lbl_salutation = new System.Windows.Forms.Label();
 			this.Cbox_salutation = new System.Windows.Forms.ComboBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.Rtb_mainText = new System.Windows.Forms.RichTextBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.Cbx_signature = new System.Windows.Forms.ComboBox();
@@ -228,6 +228,7 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(732, 504);
 			this.tabControl1.TabIndex = 5;
+			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -330,7 +331,7 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.richTextBox1);
+			this.groupBox2.Controls.Add(this.Rtb_mainText);
 			this.groupBox2.Location = new System.Drawing.Point(3, 143);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(715, 192);
@@ -338,13 +339,13 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Hauptteil";
 			// 
-			// richTextBox1
+			// Rtb_mainText
 			// 
-			this.richTextBox1.Location = new System.Drawing.Point(6, 19);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(703, 167);
-			this.richTextBox1.TabIndex = 0;
-			this.richTextBox1.Text = "";
+			this.Rtb_mainText.Location = new System.Drawing.Point(6, 19);
+			this.Rtb_mainText.Name = "Rtb_mainText";
+			this.Rtb_mainText.Size = new System.Drawing.Size(703, 167);
+			this.Rtb_mainText.TabIndex = 0;
+			this.Rtb_mainText.Text = "";
 			// 
 			// groupBox3
 			// 
@@ -405,9 +406,9 @@
 			// 
 			// Btn_generateDocument
 			// 
-			this.Btn_generateDocument.Location = new System.Drawing.Point(389, 120);
+			this.Btn_generateDocument.Location = new System.Drawing.Point(349, 120);
 			this.Btn_generateDocument.Name = "Btn_generateDocument";
-			this.Btn_generateDocument.Size = new System.Drawing.Size(106, 23);
+			this.Btn_generateDocument.Size = new System.Drawing.Size(176, 23);
 			this.Btn_generateDocument.TabIndex = 8;
 			this.Btn_generateDocument.Text = "Dokument erstellen";
 			this.Btn_generateDocument.UseVisualStyleBackColor = true;
@@ -473,7 +474,7 @@
 		private System.Windows.Forms.TextBox Tbx_citySender;
 		private System.Windows.Forms.ComboBox Cbox_salutation;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.RichTextBox richTextBox1;
+		private System.Windows.Forms.RichTextBox Rtb_mainText;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.PictureBox pbx_digitalSignature;
 		private System.Windows.Forms.CheckBox chkbx_addSignature;

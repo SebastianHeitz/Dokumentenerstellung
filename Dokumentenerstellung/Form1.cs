@@ -28,62 +28,112 @@ namespace Dokumentenerstellung
 			string cityRecipient = tbx_cityRecipient.Text;
 			string subject = Tbx_subject.Text;
 			string citySender = Tbx_citySender.Text;
+			string salutation = Cbox_salutation.Text;
+			string mainText = Rtb_mainText.Text;
+			string signature = Cbx_signature.Text;
+			
 
-			if (date == string.Empty)
+			if (tabControl1.SelectedTab.Text == "Allgemein")
 			{
-				MessageBox.Show("Bitte ein Datum angeben (Standard ist heutiges Datum)!");
-			}
-			else
-			{
-				Console.WriteLine(date);
-			}
-			if (company == string.Empty)
-			{
-				MessageBox.Show("Beim Empfänger fehlt die Firma!");
-			}
-			else
-			{
-				Console.WriteLine(company);
-			}
-			if (contactPerson == string.Empty)
-			{
-				MessageBox.Show("Es fehlt ein Ansprechpartner!");
-			}
-			else
-			{
-				Console.WriteLine(contactPerson);
-			}
-			if (street == string.Empty)
-			{
-				MessageBox.Show("Beim Empfänger fehlt die Straße!");
-			}
-			else
-			{
-				Console.WriteLine(street);
-			}
-			if (houseNumber == string.Empty)
-			{
-				MessageBox.Show("Beim Empfänger fehlt die Hausnummer!");
-			}
-			else
-			{
-				Console.WriteLine(houseNumber);
-			}
-			if (postcode == string.Empty)
-			{
-				MessageBox.Show("Beim Empfänger fehlt die PLZ!");
-			}
-			else
-			{
-				Console.WriteLine(postcode);
-			}
-			if (cityRecipient == string.Empty)
-			{
-				MessageBox.Show("Beim Empfänger fehlt die Stadt!");
-			}
-			else
-			{
-				Console.WriteLine(cityRecipient);
+				ErrorList errorList = new ErrorList();
+				if (date == string.Empty)
+				{
+					errorList.AddError("Bitte ein Datum angeben (Standard ist heutiges Datum)!");
+				}
+				else
+				{
+					Console.WriteLine(date);
+				}
+				if (company == string.Empty)
+				{
+					errorList.AddError("Beim Empfänger fehlt die Firma.");
+				}
+				else
+				{
+					Console.WriteLine(company);
+				}
+				if (contactPerson == string.Empty)
+				{
+					errorList.AddError("Beim Empfänger fehlt der Ansprechpartner.");
+				}
+				else
+				{
+					Console.WriteLine(contactPerson);
+				}
+				if (street == string.Empty)
+				{
+					errorList.AddError("Beim Empfänger fehlt die Straße!");
+				}
+				else
+				{
+					Console.WriteLine(street);
+				}
+				if (houseNumber == string.Empty)
+				{
+					errorList.AddError("Beim Empfänger fehlt die Hausnummer!");
+				}
+				else
+				{
+					Console.WriteLine(houseNumber);
+				}
+				if (postcode == string.Empty)
+				{
+					errorList.AddError("Beim Empfänger fehlt die PLZ!");
+				}
+				else
+				{
+					Console.WriteLine(postcode);
+				}
+				if (cityRecipient == string.Empty)
+				{
+					errorList.AddError("Beim Empfänger fehlt die Stadt!");
+				}
+				else
+				{
+					Console.WriteLine(cityRecipient);
+				}
+				if (citySender == string.Empty)
+				{
+					errorList.AddError("Beim Absender fehlt die Stadt!");
+				}
+				else
+				{
+					Console.WriteLine(citySender);
+				}
+				if (subject == string.Empty)
+				{
+					errorList.AddError("Es fehlt eine Betreffzeile!");
+				}
+				else
+				{
+					Console.WriteLine(subject);
+				}
+				if (salutation == string.Empty)
+				{
+					errorList.AddError("Die Anrede ist leer!");
+				}
+				else
+				{
+					Console.WriteLine(salutation);
+				}
+				if (mainText == string.Empty)
+				{
+					errorList.AddError("Der Hauptteil ist leer!");
+				}
+				else
+				{
+					Console.WriteLine(mainText);
+				}
+				if (signature == string.Empty)
+				{
+					errorList.AddError("Es fehlt eine Grußformel!");
+				}
+				else
+				{
+					Console.WriteLine(signature);
+				}
+				errorList.ShowList();
+
 			}
 		}
 
@@ -101,6 +151,7 @@ namespace Dokumentenerstellung
 
 		private void chkbx_addSignature_CheckedChanged(object sender, EventArgs e)
 		{
+			ErrorList errorList = new ErrorList();
 			if (Cbx_signature.Text == "Ralf Risse")
 			{
 				addDigitalSignature();
@@ -115,9 +166,11 @@ namespace Dokumentenerstellung
 			}
 			else
 			{
+				errorList.AddError("test");
+				//MessageBox.Show("Welche digitale Unterschrift soll ich denn einfügen?\r\nBitte eine Signatur im \"Grußformel\"-Bereich auswählen!");
 				chkbx_addSignature.Checked = false;
-				MessageBox.Show("Welche digitale Unterschrift soll ich denn einfügen?\r\nBitte eine Signatur im \"Grußformel\"-Bereich auswählen!");
 			}
+			errorList.ShowList();
 			
 		}
 
@@ -130,6 +183,26 @@ namespace Dokumentenerstellung
 			if (Cbox_salutation.Text == "Frau" | Cbox_salutation.Text == "Damen und Herren")
 			{
 				Lbl_salutation.Text = "Sehr geehrte ";
+			}
+		}
+
+		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (tabControl1.SelectedTab.Text == "Allgemein")
+			{
+				Btn_generateDocument.Text = "Dokument erstellen";
+			}
+			else if (tabControl1.SelectedTab.Text == "Rechnung")
+			{
+				Btn_generateDocument.Text = "Rechnung erstellen";
+			}
+			else if (tabControl1.SelectedTab.Text == "Angebot")
+			{
+				Btn_generateDocument.Text = "Angebot erstellen";
+			}
+			else if (tabControl1.SelectedTab.Text == "Gehaltsabrechnung")
+			{
+				Btn_generateDocument.Text = "Gehaltsabrechnung erstellen";
 			}
 		}
 	}
