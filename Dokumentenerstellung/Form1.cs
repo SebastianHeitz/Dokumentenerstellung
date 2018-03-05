@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,159 +18,66 @@ namespace Dokumentenerstellung
 			InitializeComponent();
 		}
 
-		//public Dictionary<string, string> FetchDocumentData()
-		//{
-		//	ErrorList errorList = new ErrorList();
-		//	Dictionary<string, string> documentData = new Dictionary<string, string>();
-		//	string date = dateTimePicker1.Value.ToShortDateString();
-		//	string company = tbx_company.Text;
-		//	string contactPerson = tbx_contactPerson.Text;
-		//	string street = tbx_street.Text;
-		//	string houseNumber = tbx_houseNumber.Text;
-		//	string postcode = tbx_postcode.Text;
-		//	string cityRecipient = tbx_cityRecipient.Text;
-		//	string subject = Tbx_subject.Text;
-		//	string citySender = Tbx_citySender.Text;
-		//	string salutation = Cbox_salutation.Text;
-		//	string mainText = Rtb_mainText.Text;
-		//	string signature = Cbx_signature.Text;
-
-		//	if (tabControl1.SelectedTab.Text == "Allgemein")
-		//	{
-		//		if (date == string.Empty)
-		//		{
-		//			errorList.AddError("Bitte ein Datum angeben (Standard ist heutiges Datum)!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("date", date);
-		//		}
-		//		if (company == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Empfänger fehlt die Firma.");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("company", company);
-		//		}
-		//		if (contactPerson == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Empfänger fehlt der Ansprechpartner.");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("contactPerson", contactPerson);
-		//		}
-		//		if (street == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Empfänger fehlt die Straße!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("street", street);
-		//		}
-		//		if (houseNumber == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Empfänger fehlt die Hausnummer!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("houseNumber", houseNumber);
-		//		}
-		//		if (postcode == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Empfänger fehlt die PLZ!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("postcode", postcode);
-		//		}
-		//		if (cityRecipient == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Empfänger fehlt die Stadt!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("cityRecipient", cityRecipient);
-		//		}
-		//		if (citySender == string.Empty)
-		//		{
-		//			errorList.AddError("Beim Absender fehlt die Stadt!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("citySender", citySender);
-		//		}
-		//		if (subject == string.Empty)
-		//		{
-		//			errorList.AddError("Es fehlt eine Betreffzeile!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("subject", subject);
-		//		}
-		//		if (salutation == string.Empty)
-		//		{
-		//			errorList.AddError("Die Anrede ist leer!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("salutation", salutation);
-		//		}
-		//		if (mainText == string.Empty)
-		//		{
-		//			errorList.AddError("Der Hauptteil ist leer!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("mainText", mainText);
-		//		}
-		//		if (signature == string.Empty)
-		//		{
-		//			errorList.AddError("Es fehlt eine Grußformel!");
-		//		}
-		//		else
-		//		{
-		//			documentData.Add("signature", signature);
-		//		}
-		//		if (errorList.list != null)
-		//		{
-		//			documentData.Add("error", errorList.ErrorCount.ToString());
-		//		}
-		//		errorList.ShowList();
-		//	}
-		//	return documentData;
-		//}
-
 		private void Btn_generateDocument_Click(object sender, EventArgs e)
 		{
 			ErrorList errorList = new ErrorList();
-			DataFetcher data = new DataFetcher();
-			data.Date = dateTimePicker1.Value.ToShortDateString();
-			data.Company = tbx_company.Text;
+			DataFetcher data = new DataFetcher
+			{
+				Date = dateTimePicker1.Value.ToShortDateString(),
+				Company = tbx_company.Text,
+				ContactPerson = tbx_contactPerson.Text,
+				Street = tbx_street.Text,
+				HouseNumber = tbx_houseNumber.Text,
+				Postcode = tbx_postcode.Text,
+				CityRecipient = tbx_cityRecipient.Text,
+				Subject = Tbx_subject.Text,
+				CitySender = Tbx_citySender.Text,
+				Salutation = Cbox_salutation.Text,
+				MainText = Rtb_mainText.Text,
+				Signature = Cbx_signature.Text
+			};
 
 			errorList.CheckForErrors(data);
 			if (errorList.ErrorCount == 0)
 			{
-				Console.WriteLine("BAU DAS DOKUMENT ZUSAMMEN!");
+				CreateDocument(tabControl1.SelectedIndex, data);
+			}
+		}
+
+		private void CreateDocument(int documentType, DataFetcher data)
+		{
+			string templateFile = "Allgemein_Alpha.docx";
+			string outputFile = "output_Allgemein.docx";
+
+			switch (documentType)
+			{
+				case 1:
+					templateFile = "Rechnung_Alpha.docx";
+					outputFile = "output_Rechnung.docx";
+					break;
+				case 2:
+					templateFile = "Angebot_Alpha.docx";
+					outputFile = "output_Angebot.docx";
+					break;
+				case 3:
+					templateFile = "Gehaltsabrechnung_Alpha.docx";
+					outputFile = "output_Gehaltsabrechnung.docx";
+					break;
+				default:
+					break;
 			}
 
-			// Console.WriteLine(data.Date);
-			//foreach (KeyValuePair<string, string> entry in FetchDocumentData())
-			//{
-			//	// do something with entry.Value or entry.Key
-			//	if (entry.Value != "0")
-			//	{
-			//		// Mach nichts
-			//		// MessageBox.Show(entry.Value);
-			//		Console.WriteLine("Es ist ein Fehler aufgetreten.");
-			//	}
-			//	else
-			//	{
-			//		// Erstelle Dokument
-			//		Console.WriteLine("Key: " + entry.Key + " | Wert: " + entry.Value);
-			//	}
-			//}
+			// Manager aufbauen und Template "test.docx" befüllen
+			DocumentServiceManager manager = new DocumentServiceManager();
+			using (Stream stream = manager.CreateDocument(templateFile, data))
+			{
+				// Stream in Ausgabe Datei speichern
+				using (FileStream fileStream = new FileStream("output_"+tabControl1.SelectedTab.Text+".docx", FileMode.Create))
+				{
+					stream.CopyTo(fileStream);
+					fileStream.Close();
+				}
+			}
 		}
 
 		private void chkbx_addSignature_CheckedChanged(object sender, EventArgs e)

@@ -39,7 +39,47 @@ namespace Dokumentenerstellung
 			{
 				AddError("Beim Empfänger fehlt die Firma.");
 			}
-			ShowList();
+			if (data.ContactPerson == string.Empty)
+			{
+				AddError("Beim Empfänger fehlt der Ansprechpartner.");
+			}
+			if (data.Street == string.Empty)
+			{
+				AddError("Beim Empfänger fehlt die Straße!");
+			}
+			if (data.HouseNumber == string.Empty)
+			{
+				AddError("Beim Empfänger fehlt die Hausnummer!");
+			}
+			if (data.Postcode == string.Empty)
+			{
+				AddError("Beim Empfänger fehlt die PLZ!");
+			}
+			if (data.CityRecipient == string.Empty)
+			{
+				AddError("Beim Empfänger fehlt der Ort!");
+			}
+			if (data.CitySender == string.Empty)
+			{
+				AddError("Beim Absender fehlt die Stadt!");
+			}
+			if (data.Subject == string.Empty)
+			{
+				AddError("Es fehlt eine Betreffzeile!");
+			}
+			if (data.Salutation == string.Empty)
+			{
+				AddError("Die Anrede ist leer!");
+			}
+			if (data.MainText == string.Empty)
+			{
+				AddError("Der Hauptteil ist leer!");
+			}
+			if (data.Signature == string.Empty)
+			{
+				AddError("Es fehlt eine Grußformel!");
+			}
+				ShowList();
 		}
 
 		public void ShowList()

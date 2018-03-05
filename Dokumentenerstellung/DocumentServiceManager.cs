@@ -308,7 +308,7 @@ namespace Dokumentenerstellung
 		/// <param name="templateFile">Pfad zum Template</param>
 		/// <param name="fileFormat">Dateiformat in dem das Dokument generiert wird</param>
 		/// <returns>MemoryStream mit ausgefüllten Dokument</returns>
-		public MemoryStream CreateDocument(string templateFile)
+		public MemoryStream CreateDocument(string templateFile, DataFetcher data)
 		{
 			// Daten intialisieren
 			byte[] byteArray = File.ReadAllBytes(templateFile);
@@ -324,7 +324,7 @@ namespace Dokumentenerstellung
 				//Platzhalter ersetzen
 				foreach (PlaceholderField curField in fields)
 				{
-					curField.InsertPlaceholder(GetPlaceholderValue(curField.Key));
+					curField.InsertPlaceholder(GetPlaceholderValue(curField.Key, data));
 
 					// Elemente löschen
 					foreach (OpenXmlElement curElem in curField.Elements)
@@ -359,16 +359,16 @@ namespace Dokumentenerstellung
 		/// </summary>
 		/// <param name="key">Schlüssel</param>
 		/// <returns>Wert des Platzhalters</returns>
-		private string GetPlaceholderValue(string key)
+		private string GetPlaceholderValue(string key, DataFetcher data)
 		{
 			// TODO: Platzhalter Werte bestimmen, z.B: über Webservice oder eine Liste an Interface von Placeholder Resolvern welche an die Manager Klasse eingefügt werden etc.
 			if (key == "date")
 			{
-				return "02.03.2018";
+				return data.Date;
 			}
 			else if (key == "type")
 			{
-				return "Betreffzeile";
+				return data.Subject;
 			}
 			//else if (key == "company")
 			//{
