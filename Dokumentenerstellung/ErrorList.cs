@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-//using DocumentFormat.OpenXml.Packaging;
 
 namespace Dokumentenerstellung
 {
 	class ErrorList
 	{
-		string list = null;
-		int errorCount = 0;
+		public string list = null;
+		private int errorCount;
+		public int ErrorCount
+		{
+			get { return errorCount; }
+			set { errorCount = value; }
+		}
 
 		public void AddError(string errorName)
 		{
@@ -24,12 +28,32 @@ namespace Dokumentenerstellung
 			}
 			
 		}
+		
+		public void CheckForErrors(DataFetcher data)
+		{
+			if (data.Date == String.Empty)
+			{
+				AddError("Es wurde kein Datum angegeben.");
+			}
+			if (data.Company == String.Empty)
+			{
+				AddError("Beim Empfänger fehlt die Firma.");
+			}
+			ShowList();
+		}
 
 		public void ShowList()
 		{
 			if (list != null)
 			{
-				MessageBox.Show("Es wurden " + errorCount + " Fehler gefunden:\n\n\r" + list);
+				if (ErrorCount > 1)
+				{
+					MessageBox.Show("Es wurden " + ErrorCount + " Fehler gefunden:\n\n\r" + list);
+				}
+				else
+				{
+					MessageBox.Show("Es wurde " + ErrorCount + " Fehler gefunden:\n\n\r" + list);
+				}
 			}
 		}
 	}

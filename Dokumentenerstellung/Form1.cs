@@ -17,192 +17,207 @@ namespace Dokumentenerstellung
 			InitializeComponent();
 		}
 
+		//public Dictionary<string, string> FetchDocumentData()
+		//{
+		//	ErrorList errorList = new ErrorList();
+		//	Dictionary<string, string> documentData = new Dictionary<string, string>();
+		//	string date = dateTimePicker1.Value.ToShortDateString();
+		//	string company = tbx_company.Text;
+		//	string contactPerson = tbx_contactPerson.Text;
+		//	string street = tbx_street.Text;
+		//	string houseNumber = tbx_houseNumber.Text;
+		//	string postcode = tbx_postcode.Text;
+		//	string cityRecipient = tbx_cityRecipient.Text;
+		//	string subject = Tbx_subject.Text;
+		//	string citySender = Tbx_citySender.Text;
+		//	string salutation = Cbox_salutation.Text;
+		//	string mainText = Rtb_mainText.Text;
+		//	string signature = Cbx_signature.Text;
+
+		//	if (tabControl1.SelectedTab.Text == "Allgemein")
+		//	{
+		//		if (date == string.Empty)
+		//		{
+		//			errorList.AddError("Bitte ein Datum angeben (Standard ist heutiges Datum)!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("date", date);
+		//		}
+		//		if (company == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Empfänger fehlt die Firma.");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("company", company);
+		//		}
+		//		if (contactPerson == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Empfänger fehlt der Ansprechpartner.");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("contactPerson", contactPerson);
+		//		}
+		//		if (street == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Empfänger fehlt die Straße!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("street", street);
+		//		}
+		//		if (houseNumber == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Empfänger fehlt die Hausnummer!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("houseNumber", houseNumber);
+		//		}
+		//		if (postcode == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Empfänger fehlt die PLZ!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("postcode", postcode);
+		//		}
+		//		if (cityRecipient == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Empfänger fehlt die Stadt!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("cityRecipient", cityRecipient);
+		//		}
+		//		if (citySender == string.Empty)
+		//		{
+		//			errorList.AddError("Beim Absender fehlt die Stadt!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("citySender", citySender);
+		//		}
+		//		if (subject == string.Empty)
+		//		{
+		//			errorList.AddError("Es fehlt eine Betreffzeile!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("subject", subject);
+		//		}
+		//		if (salutation == string.Empty)
+		//		{
+		//			errorList.AddError("Die Anrede ist leer!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("salutation", salutation);
+		//		}
+		//		if (mainText == string.Empty)
+		//		{
+		//			errorList.AddError("Der Hauptteil ist leer!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("mainText", mainText);
+		//		}
+		//		if (signature == string.Empty)
+		//		{
+		//			errorList.AddError("Es fehlt eine Grußformel!");
+		//		}
+		//		else
+		//		{
+		//			documentData.Add("signature", signature);
+		//		}
+		//		if (errorList.list != null)
+		//		{
+		//			documentData.Add("error", errorList.ErrorCount.ToString());
+		//		}
+		//		errorList.ShowList();
+		//	}
+		//	return documentData;
+		//}
+
 		private void Btn_generateDocument_Click(object sender, EventArgs e)
 		{
-			string date = dateTimePicker1.Value.ToShortDateString();
-			string company = tbx_company.Text;
-			string contactPerson = tbx_contactPerson.Text;
-			string street = tbx_street.Text;
-			string houseNumber = tbx_houseNumber.Text;
-			string postcode = tbx_postcode.Text;
-			string cityRecipient = tbx_cityRecipient.Text;
-			string subject = Tbx_subject.Text;
-			string citySender = Tbx_citySender.Text;
-			string salutation = Cbox_salutation.Text;
-			string mainText = Rtb_mainText.Text;
-			string signature = Cbx_signature.Text;
-			
+			ErrorList errorList = new ErrorList();
+			DataFetcher data = new DataFetcher();
+			data.Date = dateTimePicker1.Value.ToShortDateString();
+			data.Company = tbx_company.Text;
 
-			if (tabControl1.SelectedTab.Text == "Allgemein")
+			errorList.CheckForErrors(data);
+			if (errorList.ErrorCount == 0)
 			{
-				ErrorList errorList = new ErrorList();
-				if (date == string.Empty)
-				{
-					errorList.AddError("Bitte ein Datum angeben (Standard ist heutiges Datum)!");
-				}
-				else
-				{
-					Console.WriteLine(date);
-				}
-				if (company == string.Empty)
-				{
-					errorList.AddError("Beim Empfänger fehlt die Firma.");
-				}
-				else
-				{
-					Console.WriteLine(company);
-				}
-				if (contactPerson == string.Empty)
-				{
-					errorList.AddError("Beim Empfänger fehlt der Ansprechpartner.");
-				}
-				else
-				{
-					Console.WriteLine(contactPerson);
-				}
-				if (street == string.Empty)
-				{
-					errorList.AddError("Beim Empfänger fehlt die Straße!");
-				}
-				else
-				{
-					Console.WriteLine(street);
-				}
-				if (houseNumber == string.Empty)
-				{
-					errorList.AddError("Beim Empfänger fehlt die Hausnummer!");
-				}
-				else
-				{
-					Console.WriteLine(houseNumber);
-				}
-				if (postcode == string.Empty)
-				{
-					errorList.AddError("Beim Empfänger fehlt die PLZ!");
-				}
-				else
-				{
-					Console.WriteLine(postcode);
-				}
-				if (cityRecipient == string.Empty)
-				{
-					errorList.AddError("Beim Empfänger fehlt die Stadt!");
-				}
-				else
-				{
-					Console.WriteLine(cityRecipient);
-				}
-				if (citySender == string.Empty)
-				{
-					errorList.AddError("Beim Absender fehlt die Stadt!");
-				}
-				else
-				{
-					Console.WriteLine(citySender);
-				}
-				if (subject == string.Empty)
-				{
-					errorList.AddError("Es fehlt eine Betreffzeile!");
-				}
-				else
-				{
-					Console.WriteLine(subject);
-				}
-				if (salutation == string.Empty)
-				{
-					errorList.AddError("Die Anrede ist leer!");
-				}
-				else
-				{
-					Console.WriteLine(salutation);
-				}
-				if (mainText == string.Empty)
-				{
-					errorList.AddError("Der Hauptteil ist leer!");
-				}
-				else
-				{
-					Console.WriteLine(mainText);
-				}
-				if (signature == string.Empty)
-				{
-					errorList.AddError("Es fehlt eine Grußformel!");
-				}
-				else
-				{
-					Console.WriteLine(signature);
-				}
-				errorList.ShowList();
+				Console.WriteLine("BAU DAS DOKUMENT ZUSAMMEN!");
+			}
 
-			}
-		}
-
-		private void addDigitalSignature()
-		{
-			if (pbx_digitalSignature.Visible)
-			{
-				pbx_digitalSignature.Visible = false;
-			}
-			else
-			{
-				pbx_digitalSignature.Visible = true;
-			}
+			// Console.WriteLine(data.Date);
+			//foreach (KeyValuePair<string, string> entry in FetchDocumentData())
+			//{
+			//	// do something with entry.Value or entry.Key
+			//	if (entry.Value != "0")
+			//	{
+			//		// Mach nichts
+			//		// MessageBox.Show(entry.Value);
+			//		Console.WriteLine("Es ist ein Fehler aufgetreten.");
+			//	}
+			//	else
+			//	{
+			//		// Erstelle Dokument
+			//		Console.WriteLine("Key: " + entry.Key + " | Wert: " + entry.Value);
+			//	}
+			//}
 		}
 
 		private void chkbx_addSignature_CheckedChanged(object sender, EventArgs e)
 		{
-			ErrorList errorList = new ErrorList();
-			if (Cbx_signature.Text == "Ralf Risse")
-			{
-				addDigitalSignature();
-				pbx_digitalSignature.Image = Properties.Resources.Unterschrift_Ralf_Risse;
-				//pbx_digitalSignature.Visible = true;
-			}
-			else if (Cbx_signature.Text == "Ute Heitz")
-			{
-				addDigitalSignature();
-				pbx_digitalSignature.Image = Properties.Resources.Unterschrift_Ute_Heitz;
-				//pbx_digitalSignature.Visible = true;
-			}
-			else
-			{
-				errorList.AddError("test");
-				//MessageBox.Show("Welche digitale Unterschrift soll ich denn einfügen?\r\nBitte eine Signatur im \"Grußformel\"-Bereich auswählen!");
-				chkbx_addSignature.Checked = false;
-			}
-			errorList.ShowList();
-			
+			pbx_digitalSignature.Visible = !pbx_digitalSignature.Visible;
 		}
 
 		private void Cbox_salutation_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (Cbox_salutation.Text == "Herr")
+			switch (Cbox_salutation.Text)
 			{
-				Lbl_salutation.Text = "Sehr geehrter ";
-			}
-			if (Cbox_salutation.Text == "Frau" | Cbox_salutation.Text == "Damen und Herren")
-			{
-				Lbl_salutation.Text = "Sehr geehrte ";
+				case "Herr":
+					Lbl_salutation.Text = "Sehr geehrter ";
+					break;
+				default:
+					Lbl_salutation.Text = "Sehr geehrte ";
+					break;
 			}
 		}
 
 		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (tabControl1.SelectedTab.Text == "Allgemein")
+			switch (tabControl1.SelectedTab.Text)
 			{
-				Btn_generateDocument.Text = "Dokument erstellen";
+				case "Allgemein":
+					Btn_generateDocument.Text = "Dokument erstellen";
+					break;
+				case "Rechnung":
+					Btn_generateDocument.Text = "Rechnung erstellen";
+					break;
+				case "Angebot":
+					Btn_generateDocument.Text = "Angebot erstellen";
+					break;
+				case "Gehaltsabrechnung":
+					Btn_generateDocument.Text = "Gehaltsabrechnung erstellen";
+					break;
 			}
-			else if (tabControl1.SelectedTab.Text == "Rechnung")
+		}
+
+		private void Cbx_signature_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (Cbx_signature.Text == "Ralf Risse")
 			{
-				Btn_generateDocument.Text = "Rechnung erstellen";
+				pbx_digitalSignature.Image = Properties.Resources.Unterschrift_Ralf_Risse;
 			}
-			else if (tabControl1.SelectedTab.Text == "Angebot")
+			else
 			{
-				Btn_generateDocument.Text = "Angebot erstellen";
-			}
-			else if (tabControl1.SelectedTab.Text == "Gehaltsabrechnung")
-			{
-				Btn_generateDocument.Text = "Gehaltsabrechnung erstellen";
+				pbx_digitalSignature.Image = Properties.Resources.Unterschrift_Ute_Heitz;
 			}
 		}
 	}

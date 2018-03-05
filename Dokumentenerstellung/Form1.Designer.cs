@@ -292,7 +292,8 @@
 			// 
 			// pbx_digitalSignature
 			// 
-			this.pbx_digitalSignature.Location = new System.Drawing.Point(427, 20);
+			this.pbx_digitalSignature.Image = global::Dokumentenerstellung.Properties.Resources.Unterschrift_Ralf_Risse;
+			this.pbx_digitalSignature.Location = new System.Drawing.Point(443, 20);
 			this.pbx_digitalSignature.Name = "pbx_digitalSignature";
 			this.pbx_digitalSignature.Size = new System.Drawing.Size(100, 50);
 			this.pbx_digitalSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -305,9 +306,9 @@
 			this.chkbx_addSignature.AutoSize = true;
 			this.chkbx_addSignature.Location = new System.Drawing.Point(186, 49);
 			this.chkbx_addSignature.Name = "chkbx_addSignature";
-			this.chkbx_addSignature.Size = new System.Drawing.Size(171, 17);
+			this.chkbx_addSignature.Size = new System.Drawing.Size(217, 17);
 			this.chkbx_addSignature.TabIndex = 2;
-			this.chkbx_addSignature.Text = "digitale Unterschrift hinzufügen";
+			this.chkbx_addSignature.Text = "digitale Unterschrift hinzufügen (optional)";
 			this.chkbx_addSignature.UseVisualStyleBackColor = true;
 			this.chkbx_addSignature.CheckedChanged += new System.EventHandler(this.chkbx_addSignature_CheckedChanged);
 			// 
@@ -324,6 +325,8 @@
 			this.Cbx_signature.Name = "Cbx_signature";
 			this.Cbx_signature.Size = new System.Drawing.Size(121, 21);
 			this.Cbx_signature.TabIndex = 1;
+			this.Cbx_signature.Text = "Ralf Risse";
+			this.Cbx_signature.SelectedIndexChanged += new System.EventHandler(this.Cbx_signature_SelectedIndexChanged);
 			// 
 			// label7
 			// 
