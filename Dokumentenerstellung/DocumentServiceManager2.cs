@@ -13,7 +13,7 @@ namespace Dokumentenerstellung
 	/// <summary>
 	/// Manager Klasse zum generieren von Dokumenten
 	/// </summary>
-	public class DocumentServiceManager
+	public class DocumentServiceManager2
 	{
 		/// <summary>
 		/// Repräsentiert Platzhalter Felder
@@ -72,7 +72,7 @@ namespace Dokumentenerstellung
 			/// Fügt einen konkreten Wert für den Platzhalter ein. Löscht die OpenXML Elemente nicht.
 			/// </summary>
 			/// <param name="value">Wert der zu dem Platzhalter eingefügt wird</param>
-			public void InsertPlaceholder(string value)
+			public void InsertPlaceholder(string value, string[] mainText)
 			{
 				// Console.WriteLine(value);
 				// Wenn Feld leer ist und Paragraph gelöscht werden muss, dies tun
@@ -117,16 +117,40 @@ namespace Dokumentenerstellung
 
 					updateText.Text = value;
 					Elements[0].PreviousSibling().Append(clonedRun);
+					//Console.WriteLine("Hier");
+
+					//foreach (string item in mainText)
+					//{
+					//	Console.WriteLine(item);
+					//	Paragraph para = Elements[0].PreviousSibling().AppendChild(new Paragraph());
+					//	Run mainRun = para.AppendChild(new Run());
+					//	mainRun.AppendChild(new Text(item));
+					//}
 				}
 				else if (ExtractionType == FieldType.FieldChar)
 				{
 					//Field Char ersetzen
 					Text runText = new Text(value);
+					Console.WriteLine("Value des runText: "+ value);
 					runText.Space = SpaceProcessingModeValues.Preserve;
 
 					Run insertRun = new Run();
+					// Console.WriteLine("runText:" +runText);
 					insertRun.Append(runText);
-
+					if (value == "*MAINTEXT*")
+					{
+						foreach (string item in mainText)
+						{
+							Text textneu = new Text(item);
+							textneu.Space = SpaceProcessingModeValues.Preserve;
+							insertRun.Append(textneu);
+							insertRun.Append(new Break());
+							//Text newline = new Text("\r\n");
+							//textneu.Space = SpaceProcessingModeValues.Preserve;
+							//insertRun.Append(newline);
+						}
+					}
+					
 					Exception addException = null;
 					foreach (OpenXmlElement curElem in Elements)
 					{
@@ -157,7 +181,7 @@ namespace Dokumentenerstellung
 		/// <summary>
 		/// Default Konstruktor
 		/// </summary>
-		public DocumentServiceManager()
+		public DocumentServiceManager2()
 		{
 		}
 
@@ -325,7 +349,8 @@ namespace Dokumentenerstellung
 				//Platzhalter ersetzen
 				foreach (PlaceholderField curField in fields)
 				{
-					curField.InsertPlaceholder(GetPlaceholderValue(curField.Key, data));
+					curField.InsertPlaceholder(GetPlaceholderValue(curField.Key, data), data.MainText);
+					// curField.InsertPlaceholder(GetPlaceholderValue(curField.Key, MainTextContent));
 
 					// Elemente löschen
 					foreach (OpenXmlElement curElem in curField.Elements)
@@ -354,6 +379,16 @@ namespace Dokumentenerstellung
 			// TODO: Bestimmen ob leerer Paragraph erlaubt ist. Nützlich wenn z.B. in einem Addressblock der Paragraph eines zweiten Addressfelds gelöscht werden soll wenn es leer ist etc.
 			return false;
 		}
+
+		//private string[] GetPlaceholderValue(string key, DataFetcher data, string unusedOverloadingMethod)
+		//{
+		//	foreach (string item in data.MainText)
+		//	{
+		//		//Paragraph para = 
+				
+		//	}
+		//	return data.MainText;
+		//}
 
 		/// <summary>
 		/// Gibt den Wert für einen Platzhalter zurück
@@ -402,15 +437,15 @@ namespace Dokumentenerstellung
 			}
 			else if (key == "maintext")
 			{
-				//Console.WriteLine("MainText: "+data.MainText);
+				// Console.WriteLine("MainText: " + data.MainText);
 				//string[] test = data.MainText.Split('\n');
 				//int counter = 1;
 				//foreach (string item in test)
 				//{
-				//	Console.WriteLine("Zeile "+counter+": "+item);
+				//	Console.WriteLine("Zeile " + counter + ": " + item);
 				//	counter++;
 				//}
-				//return data.MainText;
+				return "*MAINTEXT*";
 			}
 			else if (key == "signature")
 			{

@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="DataFetcher.cs" />
     <Compile Include="DocumentServiceManager.cs" />
+    <Compile Include="DocumentServiceManager2.cs" />
     <Compile Include="ErrorList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

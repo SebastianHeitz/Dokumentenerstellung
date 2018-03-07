@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Text.RegularExpressions;
 
 namespace Dokumentenerstellung
 {
@@ -20,6 +24,8 @@ namespace Dokumentenerstellung
 
 		private void Btn_generateDocument_Click(object sender, EventArgs e)
 		{
+			string[] MainText = Rtb_mainText.Text.Split('\n');
+
 			ErrorList errorList = new ErrorList();
 			DataFetcher data = new DataFetcher
 			{
@@ -32,15 +38,33 @@ namespace Dokumentenerstellung
 				CityRecipient = tbx_cityRecipient.Text,
 				Subject = Tbx_subject.Text,
 				CitySender = Tbx_citySender.Text,
-				Salutation = Cbox_salutation.Text,
-				MainText = Rtb_mainText.Text,
+				Salutation = Lbl_salutation.Text + Cbox_salutation.Text + " " + tbx_contactPerson.Text + ",",
+				// MainText = Rtb_mainText.Text,
+				MainText = MainText,
 				Signature = Cbx_signature.Text
 			};
 
+			// Console.WriteLine(data.MainText);
 			errorList.CheckForErrors(data);
 			if (errorList.ErrorCount == 0)
 			{
 				CreateDocument(tabControl1.SelectedIndex, data);
+				using (WordprocessingDocument wordDoc = WordprocessingDocument.Open("output_Allgemein.docx", true))
+				{
+					string docText = null;
+					using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+					{
+						docText = sr.ReadToEnd();
+					}
+
+					Regex regexText = new Regex("\\*MAINTEXT\\*");
+					docText = regexText.Replace(docText, "");
+
+					using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
+					{
+						sw.Write(docText);
+					}
+				}
 			}
 		}
 
@@ -68,7 +92,7 @@ namespace Dokumentenerstellung
 			}
 
 			// Manager aufbauen und Template "test.docx" befüllen
-			DocumentServiceManager manager = new DocumentServiceManager();
+			DocumentServiceManager2 manager = new DocumentServiceManager2();
 			using (Stream stream = manager.CreateDocument(templateFile, data))
 			{
 				// Stream in Ausgabe Datei speichern
@@ -127,6 +151,21 @@ namespace Dokumentenerstellung
 			{
 				pbx_digitalSignature.Image = Properties.Resources.Unterschrift_Ute_Heitz;
 			}
+		}
+
+		private void ckbx_company_optional_CheckedChanged(object sender, EventArgs e)
+		{
+			tbx_company.Enabled = !tbx_company.Enabled;
+		}
+
+		private void tbx_contactPerson_TextChanged(object sender, EventArgs e)
+		{
+			Lbl_ContactPersonText.Text = tbx_contactPerson.Text+",";
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }

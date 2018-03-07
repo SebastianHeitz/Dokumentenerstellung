@@ -76,8 +76,15 @@ namespace Dokumentenerstellung
 			set { salutation= value; }
 		}
 
-		private string mainText;
-		public string MainText
+		//private string mainText;
+		//public string MainText
+		//{
+		//	get { return mainText; }
+		//	set { mainText = value; }
+		//}
+
+		private string[] mainText;
+		public string[] MainText
 		{
 			get { return mainText; }
 			set { mainText = value; }

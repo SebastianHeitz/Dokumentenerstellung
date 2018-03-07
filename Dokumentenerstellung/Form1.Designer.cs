@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.gbx_recipient = new System.Windows.Forms.GroupBox();
+			this.ckbx_company_optional = new System.Windows.Forms.CheckBox();
 			this.tbx_cityRecipient = new System.Windows.Forms.TextBox();
 			this.tbx_postcode = new System.Windows.Forms.TextBox();
 			this.tbx_houseNumber = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.lbl_date = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.Lbl_ContactPersonText = new System.Windows.Forms.Label();
 			this.Cbox_salutation = new System.Windows.Forms.ComboBox();
 			this.Lbl_salutation = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -58,11 +60,6 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.Tbx_subject = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.Lbl_citySender = new System.Windows.Forms.Label();
-			this.Tbx_citySender = new System.Windows.Forms.TextBox();
-			this.Btn_generateDocument = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +68,12 @@
 			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.Lbl_citySender = new System.Windows.Forms.Label();
+			this.Tbx_citySender = new System.Windows.Forms.TextBox();
+			this.Btn_generateDocument = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.gbx_recipient.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -84,6 +87,7 @@
 			// 
 			// gbx_recipient
 			// 
+			this.gbx_recipient.Controls.Add(this.ckbx_company_optional);
 			this.gbx_recipient.Controls.Add(this.tbx_cityRecipient);
 			this.gbx_recipient.Controls.Add(this.tbx_postcode);
 			this.gbx_recipient.Controls.Add(this.tbx_houseNumber);
@@ -98,57 +102,69 @@
 			this.gbx_recipient.Controls.Add(this.label1);
 			this.gbx_recipient.Location = new System.Drawing.Point(12, 12);
 			this.gbx_recipient.Name = "gbx_recipient";
-			this.gbx_recipient.Size = new System.Drawing.Size(277, 148);
+			this.gbx_recipient.Size = new System.Drawing.Size(356, 148);
 			this.gbx_recipient.TabIndex = 0;
 			this.gbx_recipient.TabStop = false;
 			this.gbx_recipient.Text = "Empfänger";
 			// 
+			// ckbx_company_optional
+			// 
+			this.ckbx_company_optional.AutoSize = true;
+			this.ckbx_company_optional.Location = new System.Drawing.Point(270, 18);
+			this.ckbx_company_optional.Name = "ckbx_company_optional";
+			this.ckbx_company_optional.Size = new System.Drawing.Size(81, 17);
+			this.ckbx_company_optional.TabIndex = 12;
+			this.ckbx_company_optional.Text = "Keine Firma";
+			this.ckbx_company_optional.UseVisualStyleBackColor = true;
+			this.ckbx_company_optional.CheckedChanged += new System.EventHandler(this.ckbx_company_optional_CheckedChanged);
+			// 
 			// tbx_cityRecipient
 			// 
-			this.tbx_cityRecipient.Location = new System.Drawing.Point(159, 115);
+			this.tbx_cityRecipient.Location = new System.Drawing.Point(159, 110);
 			this.tbx_cityRecipient.Name = "tbx_cityRecipient";
 			this.tbx_cityRecipient.Size = new System.Drawing.Size(102, 20);
-			this.tbx_cityRecipient.TabIndex = 11;
+			this.tbx_cityRecipient.TabIndex = 6;
 			// 
 			// tbx_postcode
 			// 
-			this.tbx_postcode.Location = new System.Drawing.Point(58, 115);
+			this.tbx_postcode.Location = new System.Drawing.Point(58, 110);
 			this.tbx_postcode.Name = "tbx_postcode";
 			this.tbx_postcode.Size = new System.Drawing.Size(65, 20);
-			this.tbx_postcode.TabIndex = 10;
+			this.tbx_postcode.TabIndex = 5;
 			// 
 			// tbx_houseNumber
 			// 
 			this.tbx_houseNumber.Location = new System.Drawing.Point(217, 78);
 			this.tbx_houseNumber.Name = "tbx_houseNumber";
 			this.tbx_houseNumber.Size = new System.Drawing.Size(44, 20);
-			this.tbx_houseNumber.TabIndex = 9;
+			this.tbx_houseNumber.TabIndex = 4;
 			// 
 			// tbx_street
 			// 
 			this.tbx_street.Location = new System.Drawing.Point(58, 78);
 			this.tbx_street.Name = "tbx_street";
 			this.tbx_street.Size = new System.Drawing.Size(95, 20);
-			this.tbx_street.TabIndex = 8;
+			this.tbx_street.TabIndex = 3;
 			// 
 			// tbx_contactPerson
 			// 
 			this.tbx_contactPerson.Location = new System.Drawing.Point(111, 51);
 			this.tbx_contactPerson.Name = "tbx_contactPerson";
 			this.tbx_contactPerson.Size = new System.Drawing.Size(150, 20);
-			this.tbx_contactPerson.TabIndex = 7;
+			this.tbx_contactPerson.TabIndex = 2;
+			this.tbx_contactPerson.TextChanged += new System.EventHandler(this.tbx_contactPerson_TextChanged);
 			// 
 			// tbx_company
 			// 
 			this.tbx_company.Location = new System.Drawing.Point(111, 16);
 			this.tbx_company.Name = "tbx_company";
 			this.tbx_company.Size = new System.Drawing.Size(150, 20);
-			this.tbx_company.TabIndex = 6;
+			this.tbx_company.TabIndex = 1;
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(129, 118);
+			this.label6.Location = new System.Drawing.Point(129, 113);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(24, 13);
 			this.label6.TabIndex = 5;
@@ -157,7 +173,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(17, 118);
+			this.label5.Location = new System.Drawing.Point(17, 113);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(30, 13);
 			this.label5.TabIndex = 4;
@@ -205,7 +221,7 @@
 			this.dateTimePicker1.Location = new System.Drawing.Point(617, 12);
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(113, 20);
-			this.dateTimePicker1.TabIndex = 1;
+			this.dateTimePicker1.TabIndex = 13;
 			// 
 			// lbl_date
 			// 
@@ -218,6 +234,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.Lbl_ContactPersonText);
 			this.groupBox1.Controls.Add(this.Cbox_salutation);
 			this.groupBox1.Controls.Add(this.Lbl_salutation);
 			this.groupBox1.Location = new System.Drawing.Point(3, 70);
@@ -226,6 +243,14 @@
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Anrede";
+			// 
+			// Lbl_ContactPersonText
+			// 
+			this.Lbl_ContactPersonText.AutoSize = true;
+			this.Lbl_ContactPersonText.Location = new System.Drawing.Point(218, 26);
+			this.Lbl_ContactPersonText.Name = "Lbl_ContactPersonText";
+			this.Lbl_ContactPersonText.Size = new System.Drawing.Size(0, 13);
+			this.Lbl_ContactPersonText.TabIndex = 2;
 			// 
 			// Cbox_salutation
 			// 
@@ -236,8 +261,8 @@
             "Damen und Herren"});
 			this.Cbox_salutation.Location = new System.Drawing.Point(98, 23);
 			this.Cbox_salutation.Name = "Cbox_salutation";
-			this.Cbox_salutation.Size = new System.Drawing.Size(172, 21);
-			this.Cbox_salutation.TabIndex = 1;
+			this.Cbox_salutation.Size = new System.Drawing.Size(114, 21);
+			this.Cbox_salutation.TabIndex = 9;
 			this.Cbox_salutation.SelectedIndexChanged += new System.EventHandler(this.Cbox_salutation_SelectedIndexChanged);
 			// 
 			// Lbl_salutation
@@ -258,8 +283,8 @@
 			this.tabControl1.Location = new System.Drawing.Point(12, 166);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(732, 504);
-			this.tabControl1.TabIndex = 5;
+			this.tabControl1.Size = new System.Drawing.Size(732, 468);
+			this.tabControl1.TabIndex = 7;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
@@ -273,7 +298,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(724, 478);
+			this.tabPage1.Size = new System.Drawing.Size(724, 442);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Allgemein";
 			// 
@@ -307,7 +332,7 @@
 			this.chkbx_addSignature.Location = new System.Drawing.Point(186, 49);
 			this.chkbx_addSignature.Name = "chkbx_addSignature";
 			this.chkbx_addSignature.Size = new System.Drawing.Size(217, 17);
-			this.chkbx_addSignature.TabIndex = 2;
+			this.chkbx_addSignature.TabIndex = 12;
 			this.chkbx_addSignature.Text = "digitale Unterschrift hinzufügen (optional)";
 			this.chkbx_addSignature.UseVisualStyleBackColor = true;
 			this.chkbx_addSignature.CheckedChanged += new System.EventHandler(this.chkbx_addSignature_CheckedChanged);
@@ -324,7 +349,7 @@
 			this.Cbx_signature.Location = new System.Drawing.Point(6, 47);
 			this.Cbx_signature.Name = "Cbx_signature";
 			this.Cbx_signature.Size = new System.Drawing.Size(121, 21);
-			this.Cbx_signature.TabIndex = 1;
+			this.Cbx_signature.TabIndex = 11;
 			this.Cbx_signature.Text = "Ralf Risse";
 			this.Cbx_signature.SelectedIndexChanged += new System.EventHandler(this.Cbx_signature_SelectedIndexChanged);
 			// 
@@ -352,7 +377,7 @@
 			this.Rtb_mainText.Location = new System.Drawing.Point(6, 19);
 			this.Rtb_mainText.Name = "Rtb_mainText";
 			this.Rtb_mainText.Size = new System.Drawing.Size(703, 167);
-			this.Rtb_mainText.TabIndex = 0;
+			this.Rtb_mainText.TabIndex = 10;
 			this.Rtb_mainText.Text = "";
 			// 
 			// label8
@@ -370,7 +395,7 @@
 			this.Tbx_subject.MaxLength = 100;
 			this.Tbx_subject.Name = "Tbx_subject";
 			this.Tbx_subject.Size = new System.Drawing.Size(630, 20);
-			this.Tbx_subject.TabIndex = 5;
+			this.Tbx_subject.TabIndex = 8;
 			// 
 			// tabPage2
 			// 
@@ -379,54 +404,9 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(724, 478);
+			this.tabPage2.Size = new System.Drawing.Size(724, 442);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Rechnung";
-			// 
-			// tabPage3
-			// 
-			this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(724, 478);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "Angebot";
-			// 
-			// tabPage4
-			// 
-			this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Size = new System.Drawing.Size(724, 478);
-			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "Gehaltsabrechnung";
-			// 
-			// Lbl_citySender
-			// 
-			this.Lbl_citySender.AutoSize = true;
-			this.Lbl_citySender.Location = new System.Drawing.Point(570, 50);
-			this.Lbl_citySender.Name = "Lbl_citySender";
-			this.Lbl_citySender.Size = new System.Drawing.Size(24, 13);
-			this.Lbl_citySender.TabIndex = 6;
-			this.Lbl_citySender.Text = "Ort:";
-			// 
-			// Tbx_citySender
-			// 
-			this.Tbx_citySender.Location = new System.Drawing.Point(617, 47);
-			this.Tbx_citySender.Name = "Tbx_citySender";
-			this.Tbx_citySender.Size = new System.Drawing.Size(113, 20);
-			this.Tbx_citySender.TabIndex = 7;
-			this.Tbx_citySender.Text = "Gelsenkirchen";
-			// 
-			// Btn_generateDocument
-			// 
-			this.Btn_generateDocument.Location = new System.Drawing.Point(349, 120);
-			this.Btn_generateDocument.Name = "Btn_generateDocument";
-			this.Btn_generateDocument.Size = new System.Drawing.Size(176, 23);
-			this.Btn_generateDocument.TabIndex = 8;
-			this.Btn_generateDocument.Text = "Dokument erstellen";
-			this.Btn_generateDocument.UseVisualStyleBackColor = true;
-			this.Btn_generateDocument.Click += new System.EventHandler(this.Btn_generateDocument_Click);
 			// 
 			// dataGridView1
 			// 
@@ -491,11 +471,67 @@
 			this.Column7.Name = "Column7";
 			this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
+			// tabPage3
+			// 
+			this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Size = new System.Drawing.Size(724, 442);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "Angebot";
+			// 
+			// tabPage4
+			// 
+			this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Size = new System.Drawing.Size(724, 442);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "Gehaltsabrechnung";
+			// 
+			// Lbl_citySender
+			// 
+			this.Lbl_citySender.AutoSize = true;
+			this.Lbl_citySender.Location = new System.Drawing.Point(570, 50);
+			this.Lbl_citySender.Name = "Lbl_citySender";
+			this.Lbl_citySender.Size = new System.Drawing.Size(24, 13);
+			this.Lbl_citySender.TabIndex = 6;
+			this.Lbl_citySender.Text = "Ort:";
+			// 
+			// Tbx_citySender
+			// 
+			this.Tbx_citySender.Location = new System.Drawing.Point(617, 47);
+			this.Tbx_citySender.Name = "Tbx_citySender";
+			this.Tbx_citySender.Size = new System.Drawing.Size(113, 20);
+			this.Tbx_citySender.TabIndex = 14;
+			this.Tbx_citySender.Text = "Gelsenkirchen";
+			// 
+			// Btn_generateDocument
+			// 
+			this.Btn_generateDocument.Location = new System.Drawing.Point(508, 120);
+			this.Btn_generateDocument.Name = "Btn_generateDocument";
+			this.Btn_generateDocument.Size = new System.Drawing.Size(176, 23);
+			this.Btn_generateDocument.TabIndex = 14;
+			this.Btn_generateDocument.Text = "Dokument erstellen";
+			this.Btn_generateDocument.UseVisualStyleBackColor = true;
+			this.Btn_generateDocument.Click += new System.EventHandler(this.Btn_generateDocument_Click);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(409, 47);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(90, 47);
+			this.button1.TabIndex = 15;
+			this.button1.Text = "Haupt-Text\r\nhinzufügen";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(756, 682);
+			this.ClientSize = new System.Drawing.Size(756, 641);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.Btn_generateDocument);
 			this.Controls.Add(this.Tbx_citySender);
 			this.Controls.Add(this.Lbl_citySender);
@@ -568,6 +604,9 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+		private System.Windows.Forms.CheckBox ckbx_company_optional;
+		private System.Windows.Forms.Label Lbl_ContactPersonText;
+		private System.Windows.Forms.Button button1;
 	}
 }
 

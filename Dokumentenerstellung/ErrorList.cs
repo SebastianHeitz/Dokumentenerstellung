@@ -71,10 +71,10 @@ namespace Dokumentenerstellung
 			{
 				AddError("Die Anrede ist leer!");
 			}
-			if (data.MainText == string.Empty)
-			{
-				AddError("Der Hauptteil ist leer!");
-			}
+			//if (data.MainText == string.Empty)
+			//{
+			//	AddError("Der Hauptteil ist leer!");
+			//}
 			if (data.Signature == string.Empty)
 			{
 				AddError("Es fehlt eine Grußformel!");
